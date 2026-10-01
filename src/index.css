@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Design tokens
+  Base layer follows shadcn/ui's token contract (background, card, primary…)
+  so every primitive stays theme-aware. The product layer adds tokens a 3D
+  tool needs and a generic app doesn't: viewport surface, grid, axis colours,
+  selection highlight and IFC category colours.
+*/
+:root {
+  --radius: 0.5rem;
+
+  --background: #eef0f2;
+  --foreground: #1b2430;
+  --card: #f8f9fa;
+  --card-foreground: #1b2430;
+  --popover: #ffffff;
+  --popover-foreground: #1b2430;
+  --primary: #1f3a5f;
+  --primary-foreground: #f8f9fa;
+  --secondary: #e3e7eb;
+  --secondary-foreground: #1b2430;
+  --muted: #e3e7eb;
+  --muted-foreground: #5b6675;
+  --accent: #dce3ea;
+  --accent-foreground: #1b2430;
+  --destructive: #c2412d;
+  --border: #d3d8de;
+  --input: #c9cfd6;
+  --ring: #3a6ea5;
+
+  /* product layer */
+  --viewport: #e4e7ea;
+  --viewport-grid: #c4cad1;
+  --viewport-grid-strong: #a6aeb8;
+  --selection: #e0a800;
+  --selection-3d: #f2c230;
+  --axis-x: #d9534f;
+  --axis-y: #4fa84f;
+  --axis-z: #3e7cd6;
+  --cat-wall: #d6d2c8;
+  --cat-slab: #b9bec5;
+  --cat-column: #8f98a3;
+  --cat-window: #8fc3e6;
+  --cat-door: #a07850;
+  --cat-roof: #6f7a86;
+}
+
+.dark {
+  --background: #16191d;
+  --foreground: #e6e9ed;
+  --card: #1d2126;
+  --card-foreground: #e6e9ed;
+  --popover: #22272d;
+  --popover-foreground: #e6e9ed;
+  --primary: #8db4e2;
+  --primary-foreground: #10161d;
+  --secondary: #262b31;
+  --secondary-foreground: #e6e9ed;
+  --muted: #262b31;
+  --muted-foreground: #98a2ae;
+  --accent: #2c333b;
+  --accent-foreground: #e6e9ed;
+  --destructive: #e26a55;
+  --border: #2f353c;
+  --input: #3a414a;
+  --ring: #8db4e2;
+
+  --viewport: #1b1f24;
+  --viewport-grid: #2b3138;
+  --viewport-grid-strong: #3b434c;
+  --selection: #f2c230;
+  --selection-3d: #f2c230;
+  --cat-wall: #a9a59c;
+  --cat-slab: #7d838b;
+  --cat-column: #636c76;
+  --cat-window: #5f93b8;
+  --cat-door: #86643f;
+  --cat-roof: #4c555f;
+}
+
+@theme inline {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-viewport: var(--viewport);
+  --color-selection: var(--selection);
+  --color-axis-x: var(--axis-x);
+  --color-axis-y: var(--axis-y);
+  --color-axis-z: var(--axis-z);
+  --color-cat-wall: var(--cat-wall);
+  --color-cat-slab: var(--cat-slab);
+  --color-cat-column: var(--cat-column);
+  --color-cat-window: var(--cat-window);
+  --color-cat-door: var(--cat-door);
+  --color-cat-roof: var(--cat-roof);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "tnum" 1;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
